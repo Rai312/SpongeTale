@@ -1,50 +1,48 @@
 using UnityEngine;
 
-namespace SpongeTale
+
+public class PlayerStateMachine : MonoBehaviour
 {
-    public class PlayerStateMachine : MonoBehaviour
+    [SerializeField] private State _firstState;
+
+    private State _currentState;
+
+    private void Start()
     {
-        [SerializeField] private State _firstState;
+        Reset(_firstState);
+    }
+    private void Update()
+    {
+        if (_currentState == null)
+            return;
+        Debug.Log(_currentState);
+        State nextState = _currentState.GetNextState();
 
-        private State _currentState;
+        if (nextState != null)
+        {
 
-        private void Start()
-        {
-            Reset(_firstState);
-        }
-        private void Update()
-        {
-            if (_currentState == null)
-                return;
-            Debug.Log(_currentState);
-            State nextState = _currentState.GetNextState();
-            
-            if (nextState != null)
-            {
-                
-                Transit(nextState);
-            }
-                
-        }
-        private void Reset(State startState)
-        {
-            _currentState = startState;
-
-            if (_currentState != null)
-            {
-                _currentState.Enter();
-            }
+            Transit(nextState);
         }
 
-        private void Transit(State nextState)
+    }
+    private void Reset(State startState)
+    {
+        _currentState = startState;
+
+        if (_currentState != null)
         {
-            if (_currentState != null)
-                _currentState.Exit();
-
-            _currentState = nextState;
-
-            if (_currentState != null)
-                _currentState.Enter();
+            _currentState.Enter();
         }
+    }
+
+    private void Transit(State nextState)
+    {
+        if (_currentState != null)
+            _currentState.Exit();
+
+        _currentState = nextState;
+
+        if (_currentState != null)
+            _currentState.Enter();
     }
 }

@@ -1,15 +1,17 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace SpongeTale
+public class DrawingTransition : Transition
 {
-    public class DrawingTransition : Transition
+    public event UnityAction Switched;
+
+    private void OnTriggerEnter(Collider other)
     {
-        private void OnTriggerEnter(Collider other)
+        if (other.TryGetComponent<DrawingTrigger>(out DrawingTrigger drawingTrigger))
         {
-            if (other.TryGetComponent<DrawingTrigger>(out DrawingTrigger drawingTrigger))
-            {
-                NeedTransit = true;
-            }
+            Switched?.Invoke();
+            NeedTransit = true;
         }
     }
 }
+

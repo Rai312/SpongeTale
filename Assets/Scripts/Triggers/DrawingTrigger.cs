@@ -2,27 +2,24 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-namespace SpongeTale
+public class DrawingTrigger : MonoBehaviour
 {
-    public class DrawingTrigger : MonoBehaviour
+    //[SerializeField] private MoverZ _moverZ;
+
+    private void OnTriggerEnter(Collider other)
     {
-        [SerializeField] private MoverZ _moverZ;
-
-        private void OnTriggerEnter(Collider other)
+        if (other.TryGetComponent<MoverZ>(out MoverZ moverZ))
         {
-            if (other.TryGetComponent<Brush>(out Brush brush))
-            {
-                _moverZ.enabled = false;
-            }
+            moverZ.enabled = false;
         }
+    }
 
-        private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<MoverZ>(out MoverZ moverZ))
         {
-            if (other.TryGetComponent<Brush>(out Brush brush))
-            {
-                _moverZ.enabled = true;
-            }
+            moverZ.enabled = true;
         }
     }
 }
+

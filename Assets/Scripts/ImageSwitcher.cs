@@ -1,27 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpongeTale
+public class ImageSwitcher : MonoBehaviour
 {
-    public class ImageSwitcher : MonoBehaviour
+    [SerializeField] private CelebrateState _celebrateState;
+    [SerializeField] private Image _appleImage;
+    [SerializeField] private Image _whaleImage;
+
+    private void OnEnable()
     {
-        //[SerializeField] Player _player;
-        [SerializeField] private Image _image;
-        [SerializeField] private Sprite _sprite;
+        _celebrateState.Celebrated += OnPaintedOver;
+    }
 
-        private void OnEnable()
-        {
-            //_player.PaintedOver += OnPaintedOver;
-        }
+    private void OnDisable()
+    {
+        _celebrateState.Celebrated -= OnPaintedOver;
+    }
 
-        private void OnDisable()
-        {
-            //_player.PaintedOver -= OnPaintedOver;
-        }
-
-        private void OnPaintedOver()
-        {
-            _image.sprite = _sprite;
-        }
+    private void OnPaintedOver()
+    {
+        _appleImage.enabled = false;
+        _whaleImage.enabled = true;
     }
 }
+

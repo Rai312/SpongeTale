@@ -3,11 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public class Easel : MonoBehaviour { }
 
-namespace SpongeTale
-{
-    public class Easel : MonoBehaviour
-    {
-
-    }
-}
