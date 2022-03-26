@@ -9,8 +9,6 @@ public class MovingTransition : Transition
 {
     [SerializeField] private CelebrateState _celebratedState;
 
-    //private float _durationOfDelay = 1.5f;
-
     public event UnityAction Switched;
 
     private void OnEnable()
@@ -25,16 +23,8 @@ public class MovingTransition : Transition
 
     private void OnCelebrated()
     {
-        //StartCoroutine(WaitAfterReached());
         NeedTransit = true;
         Switched.Invoke();
     }
-
-    //private IEnumerator WaitAfterReached()
-    //{
-    //    yield return new WaitForSeconds(_durationOfDelay);
-
-    //    NeedTransit = true;
-    //}
 }
 

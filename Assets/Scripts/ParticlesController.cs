@@ -38,17 +38,11 @@ public class ParticlesController : MonoBehaviour
         }
     }
 
-    //public void ChangeColorParticles()
-    //{
-
-    //}
-
     private IEnumerator WaitAfterEnter()
     {
         yield return new WaitForSeconds(_durationOfDelay);
 
         _isPlayingParticles = true;
-        Debug.Log(_isPlayingParticles);
     }
 }
 

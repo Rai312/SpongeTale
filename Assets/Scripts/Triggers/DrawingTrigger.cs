@@ -4,8 +4,6 @@ using UnityEngine.Events;
 
 public class DrawingTrigger : MonoBehaviour
 {
-    //[SerializeField] private MoverZ _moverZ;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<MoverZ>(out MoverZ moverZ))

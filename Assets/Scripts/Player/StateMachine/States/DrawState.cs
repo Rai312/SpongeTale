@@ -49,43 +49,20 @@ namespace SpongeTale
         {
             Physics.Raycast(transform.position, -transform.up, out _raycast);
 
-            //Draw();
-            DrawNew();
+            Draw();
 
         }
 
         private void Draw()
         {
-            _force = Vector3.zero;
-
-            if (_joystick.Direction.x > 0)
-                _force.x = _joystick.Direction.x;
-            else if (_joystick.Direction.x < 0)
-                _force.x = _joystick.Direction.x;//дубляж
-
-            if (_joystick.Direction.y > 0)
-            {
-                _force.y = -(_raycast.normal.z * _joystick.Direction.y);
-                _force.z = _raycast.normal.y * _joystick.Direction.y;
-            }
-            else if (_joystick.Direction.y < 0)
-            {
-                _force.y = _raycast.normal.z * -_joystick.Direction.y;
-                _force.z = -(_raycast.normal.y * -_joystick.Direction.y);
-            }
-
-            _rigidbody.velocity = _force * _speed;
-        }
-
-        private void DrawNew()//переделать
-        {
             float horizontal = _joystick.Direction.x;
             float vertical = _joystick.Direction.y;
+
             Vector3 normal = _raycast.normal;
 
             Vector3 direction = new Vector3(horizontal, 0, vertical);
 
-            Vector3 directionAlongSurface = (direction - Vector3.Dot(direction, normal) * normal).normalized;//возможно уже нормализован
+            Vector3 directionAlongSurface = (direction - Vector3.Dot(direction, normal) * normal).normalized;
             Vector3 offset = directionAlongSurface * (_speed * Time.deltaTime);
 
             _rigidbody.MovePosition(_rigidbody.position + offset);

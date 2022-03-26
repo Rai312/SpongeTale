@@ -25,13 +25,14 @@ public class Transformable : MonoBehaviour
 
     private float _targetMovingPositionX = -0.012f;
     private float _targetMovingPositionY = 1.05f;
-    private float _offsetY = 0.2f;
-    private float _offsetZ = 0.18f;
+    private float _offsetDrawingPositionY = 0.2f;
+    private float _offsetDrawingPositionZ = 0.18f;
     private float _targetMovingRotationW = 1f;
 
     private float _targetCelebratePositionX = 0.3f;
     private float _targetCelebratePositionY = 0.35f;
-    private float _targetCelebratePositionZ = 13.25f;
+    private float _offsetCelebratePositionZ = 2.25f;
+    private float _targetCelebratePositionZ;
     private float _targetCelebrateRotationX = -135.58f;
     private float _targetCelebrateRotationY = -16.33f;
 
@@ -51,12 +52,12 @@ public class Transformable : MonoBehaviour
         {
             _targetMovingPosition = new Vector3(_targetMovingPositionX, _targetMovingPositionY, transform.position.z);
 
-            _targetDrawingPositionY = transform.position.y + _offsetY;
-            _targetDrawingPositionZ = transform.position.z + _offsetZ;
+            _targetDrawingPositionY = transform.position.y + _offsetDrawingPositionY;
+            _targetDrawingPositionZ = transform.position.z + _offsetDrawingPositionZ;
 
             _targetDrawingPosition = new Vector3(Vector3.zero.x, _targetDrawingPositionY, _targetDrawingPositionZ);
 
-            _targetCelebratePositionZ = easel.transform.position.z - 2.25f;
+            _targetCelebratePositionZ = easel.transform.position.z - _offsetCelebratePositionZ;
             _targetCelebratePosition = new Vector3(_targetCelebratePositionX, _targetCelebratePositionY, _targetCelebratePositionZ);
         }
     }

@@ -11,7 +11,6 @@ public class CelebrateState : State
     private float _positionZOfEnablingCoroutine = 13.4f;
     private float _durationOfTransitionWaitingDelay = 1f;
 
-    //public bool _isMoving = false;
     public event UnityAction Celebrated;
 
     private void Awake()

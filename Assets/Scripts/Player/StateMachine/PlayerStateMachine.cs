@@ -11,11 +11,12 @@ public class PlayerStateMachine : MonoBehaviour
     {
         Reset(_firstState);
     }
+
     private void Update()
     {
         if (_currentState == null)
             return;
-        Debug.Log(_currentState);
+
         State nextState = _currentState.GetNextState();
 
         if (nextState != null)
