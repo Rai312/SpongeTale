@@ -24,8 +24,8 @@ public class ParticlesController : MonoBehaviour
         {
             if (_isPlayingParticles)
             {
-
                 _particleSystem.enableEmission = true;
+                _isPlayingParticles = false;
             }
         }
     }
